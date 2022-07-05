@@ -10,7 +10,7 @@ int main (){
 	}
 	
 	printf("[");
-	
+	///////////////////////////////////
 	for(space_xn = 1; space_xn <= naturalnumber_n; space_xn++){
 		answer = integer_x*space_xn;
 		printf("%d", answer);
