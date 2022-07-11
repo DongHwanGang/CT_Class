@@ -2,26 +2,25 @@
 
 int solution(int num) {
     int answer = 0;
-    int count = 1;
+    int count = 0;
+    long long tepNumber = num;
     
-    for(count = 1; count <= 500; count++){
-		if(num % 2 == 0){
-	    	num /= 2; 
+    for(count = 0; count <= 500; count++){
+		
+		if(tepNumber == 1){
+				break;
+		}	
+		if(tepNumber % 2 == 0){
+	    	tepNumber /= 2; 
 		}
 	    
 	    else
-	    	num = num * 3 + 1; 
-	    
-		if(num == 1){
-			break;
-		}	
+	    	tepNumber = tepNumber * 3 + 1; 
+			
 		
-		if (num > 8000000){
-			break;
-		}
 	}
 	
-	if(num == 1){
+	if(tepNumber == 1){
 		answer = count;
 	}
 	
