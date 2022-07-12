@@ -37,5 +37,5 @@ int main () {
 	for(count = 0; count < cip(n); count++){
 		printf("%d", answer[count]);
 	}
-
+	free(answer);
 }
