@@ -7,35 +7,40 @@ char* solution(const char* s) {
     // return 값은 malloc 등 동적 할당을 사용해주세요. 할당 길이는 상황에 맞게 변경해주세요.
     char* answer;
     char copy_word[500] = "";
-    int str_len ,count, copy_count, answer_count = 0;
-    count = copy_count = answer_count = 0;
-    
-    for(str_len; *(s + str_len) != 0; str_len++){
+    int count, copy_count, answer_count, blank_count = 0;
+    count = copy_count = answer_count = blank_count = 0; 
+	
+	for(count = 0; s[count] != '\0'; count++){
 	}
-    
-    for(count = 0; count > str_len; count++){
-		if(s[count] != ' ' || s[count] != '\0'){
-			copy_word[count - copy_count] = s[count];
-			printf("%c ", copy_word[count - copy_count]);
+	
+	answer = (char*)malloc(count + 1);
+	
+    for(count = 0; s[count] != '\0'; count++){
+		if(s[count] >= ' '){
+			copy_word[count - blank_count] = s[count];
+//			printf("%c ", copy_word[count - blank_count]);
 		}
-		
-		else if(s[count] == ' ' || s[count] == '\0'){
-			copy_word[count - copy_count] = s[count];
-			copy_count = count + 1;
-			answer = (char*)malloc(copy_count);
-			for(answer_count = 0; count < answer_count; answer_count++){
-				if (answer_count % 2 == 0) {
-					answer[answer_count] = copy_word[answer_count] - 32;
+	
+		if(s[count] == ' ' || s[count + 1] == '\0'){
+			for(copy_count = 0; copy_word[copy_count] != '\0'; copy_count++){				
+				if(copy_count % 2 == 0 && copy_word[copy_count] >= 'Z'){
+					answer[copy_count + blank_count] = copy_word[copy_count] - 32;
 				}
-				else if(answer_count % 2 != 0){
-					answer[answer_count] = copy_word[answer_count];
+				
+				else if(copy_count % 2 != 0){
+					answer[copy_count + blank_count] = copy_word[copy_count];
 				}
-//				else if (answer_count % 2 != 0 && copy_word[answer_count] >= 95){
-//					answer[answer_count] = answer[answer_count];
-//				}
+				blank_count = count + 1;
+				printf("%d ", copy_count);
+				
+			}
+//			printf("%c ", answer[copy_count + blank_count]);
 			
+			for(copy_count = 0; copy_word[copy_count] != '\0'; copy_count++){
+				copy_word[copy_count] = '\0'; 
 			}
 		}
+		printf("%c ", answer[count]);
 	} 
 	
     return answer;
@@ -44,8 +49,10 @@ char* solution(const char* s) {
 int main () {
 	
 	char s[500] = "";
+	char* answer;
 	
 	gets(s);
-	
-	puts(solution(s));
+	answer = solution(s);
+	puts(answer);
+	free(answer);
 }
