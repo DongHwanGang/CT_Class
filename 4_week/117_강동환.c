@@ -25,10 +25,6 @@ char* solution(const char* s) {
 				answer[count] = answer[count + 1];
 				answer[count + 1] = tep_word;
 			}
-			
-			else {
-				continue;
-			}	
 		}
 	}
 	
