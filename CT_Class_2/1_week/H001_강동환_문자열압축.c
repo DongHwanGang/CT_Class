@@ -16,7 +16,7 @@ int solution(char* S){
 		sum_s[null_num] = '\0';
 	}
 	
-	for(divide_str = 0; divide_str < strlen(S) / 2; divide_str++){
+	for(divide_str = 0; divide_str < strlen(S) / 2 + 1; divide_str++){
 		sum_num = str_set = 0;
 		for(null_num = 0; null_num < strlen(S) + 1; null_num++){
 			copy_s[null_num] = '\0';
@@ -35,10 +35,7 @@ int solution(char* S){
 			}
 			
 			if(copy_s[compare_copy_str] != S[compare_str] || S[compare_str] == '\0'){
-				if(S[compare_str] == '\0'){
-					str_set += 1;
-				}
-				
+					
 				if(str_set > 1){
 					sum_s[sum_num] = str_set + '0';
 					sum_num++;
@@ -91,4 +88,6 @@ int main (){
 	
 	gets(S);
 	printf("%d", solution(S));
+	
+	return 0;
 }
