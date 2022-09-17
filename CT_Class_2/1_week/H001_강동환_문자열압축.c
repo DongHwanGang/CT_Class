@@ -11,9 +11,12 @@ int solution(char* S){
 	str_num = sum_num = str_set = 0;
 	
 	for(null_num = 0; copy_s[null_num] != '\0'; null_num++){
-		compression[null_num] = 0;
 		copy_s[null_num] = '\0';
 		sum_s[null_num] = '\0';
+	}
+	
+	for(null_num = 0; null_num < strlen(S); null_num++){
+		compression[null_num] = 0;
 	}
 	
 	for(divide_str = 0; divide_str < strlen(S) / 2 + 1; divide_str++){
