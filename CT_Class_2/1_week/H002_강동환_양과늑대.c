@@ -1,33 +1,68 @@
 #include <stdio.h>
 
-// info_len은 배열 info의 길이입니다.
-// edges_rows는 2차원 배열 edges의 행 길이, edges_cols는 2차원 배열 edges의 열 길이입니다.
+// info_len?? ?迭 info?? ????????.
+// edges_rows?? 2???? ?迭 edges?? ?? ????, edges_cols?? 2???? ?迭 edges?? ?? ????????.
 int solution(int info[], size_t info_len, int edges[11][2], size_t edges_rows, size_t edges_cols) {
-    int temp_leef, temp_root, chase_ani_cols, chase_ani_rows, wolf, sheep, answer = 0;
-    int check_num, temp_sheep, check_rows, return_rows, return_cols;
+    int temp_num, temp_leef, temp_root, chase_ani_cols, chase_ani_rows, wolf, sheep, answer = 0;
+    int check_num, temp_sheep, check_rows, return_rows, return_cols, total_sheep, index;
     int visited_loc[17] = {0};
     int check_loc[17] = {0};
-    int floor[17][17] = {0};
+    int parameter[17] = {0};
+    int return_sum[17] = {0};
+    int floor[17][2] = {0};
     
-    sheep = 1;
+    total_sheep = 0;
+    visited_loc[0] = sheep = 1;
 
-    for(chase_ani_rows = 0; chase_ani_rows < edges_rows; chase_ani_rows++){	
-    	for(chase_ani_cols = 0; chase_ani_cols < edges_cols; chase_ani_cols++){
-    		temp_root = edges[chase_ani_rows][0];
-    		temp_leef = edges[chase_ani_rows][chase_ani_cols];
-    		if(edges[chase_ani_rows][0] != edges[chase_ani_rows][chase_ani_cols]){
-    			floor[temp_root][temp_leef] = edges[chase_ani_rows][chase_ani_cols];
-    		}
-    	}
-	}
+    for(chase_ani_rows = 0; chase_ani_rows < edges_rows; chase_ani_rows++){		
+		temp_root = edges[chase_ani_rows][0];
+		temp_leef = edges[chase_ani_rows][1];
+		chase_ani_cols = 0;
+		if(!floor[temp_root][chase_ani_cols]){
+			floor[temp_root][chase_ani_cols] = temp_leef;
+		}
+		else{
+			chase_ani_cols += 1;
+			floor[temp_root][chase_ani_cols] = temp_leef;
+		}
 		
+		if(floor[temp_root][0] > floor[temp_root][1] && chase_ani_cols > 0){
+			temp_num = floor[temp_root][0];
+			floor[temp_root][0] = floor[temp_root][1];
+			floor[temp_root][1] = temp_num;
+		} 
+	} // Match root - index, leef - parameter
+	
+	for(check_num = 0; check_num < info_len; check_num++){
+		total_sheep += !info[check_num] ? 1 : 0; 
+	} // Sum total_sheep
+	
+	for(chase_ani_cols = 0; chase_ani_cols < edges_cols; chase_ani_cols++){
+		parameter[chase_ani_cols] = floor[0][chase_ani_cols];
+	} // leef of frist root 
+	
+	for(check_num = 0; check_num < total_sheep; check_num++){
+		index = 0;
+		for(parameter[index]; parameter[index] != 0; index++){
+			if(!info[parameter[index]]){
+				for(return_rows = 0; ){
+					for(return_cols = 0;){
+						
+					}
+				}
+			}
+		}
+
+		for()
+	}
+	
     for(chase_ani_rows = 0; chase_ani_rows < 17; chase_ani_rows++){
-    	for(chase_ani_cols = 0; chase_ani_cols < 17; chase_ani_cols++){
+    	for(chase_ani_cols = 0; chase_ani_cols < 2; chase_ani_cols++){
     		printf("%d ", floor[chase_ani_rows][chase_ani_cols]);
     	}
     	printf("\n");
 	}
-    return answer;
+    return total_sheep;
 }
 
 int main (){
